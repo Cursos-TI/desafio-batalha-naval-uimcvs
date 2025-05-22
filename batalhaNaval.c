@@ -10,16 +10,27 @@ int main() {
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
     int tabuleiro[10][10];
-    int navio1[3] = {3, 3, 3};
-    int navio2[3] = {3, 3, 3};
-    printf("teste\n");
+    int navio1[4] = {1, 4, 5, 6};
+    int navio2[4] = {5, 1, 2, 3};
+
+    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
+    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
+    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    int navio3[6] = {3, 4, 5, 1, 2, 3};
+    int navio4[6] = {3, 4, 5, 9, 8, 7};
+    
     for(int i = 0; i < 10; i++) {
         for(int j = 0; j < 10; j++) {
-            if(i == 1 && j > 3 && j < 7) tabuleiro[i][j] = navio1[i-4];
-            else if(j == 8 && i > 5 && i < 9) tabuleiro[i][j] = navio2[j-6];
+            if(i == navio1[0] && j == navio2[0] && (i == navio2[1] || i == navio2[2] || i == navio2[3]) && (navio2[0] == navio1[1] || navio2[0] == navio1[2] || navio2[0] == navio1[3]) && (navio1[0] == navio2[1] || navio1[0] == navio2[2] || navio1[0] == navio2[3])) tabuleiro[i][j] = 7;
+            else if(i == navio1[0] && j >= navio1[1] && j <= navio1[3]) tabuleiro[i][j] = 3;
+            else if(j == navio2[0] && i >= navio2[1] && i <= navio2[3]) tabuleiro[i][j] = 3;
+            else if((i == navio3[0] && j == navio3[3]) || (i == navio3[1] && j == navio3[4]) || (i == navio3[2] && j == navio3[5])) tabuleiro[i][j] = 3;
+            else if((i == navio4[0] && j == navio4[3]) || (i == navio4[1] && j == navio4[4]) || (i == navio4[2] && j == navio4[5])) tabuleiro[i][j] = 3;
             else tabuleiro[i][j] = 0;
         }
     }
+
     printf("     A  B  C  D  E  F  G  H  I  J \n");
     for(int i = 0; i < 10; i++) {
         printf("%2d  ", i + 1);
@@ -29,11 +40,6 @@ int main() {
         }
         printf("\n");
     }
-
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
